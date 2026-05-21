@@ -38,3 +38,9 @@ Route::post('/notifikasi', [NotifikasiController::class, 'store']);
 Route::get('/notifikasi/{user_id}', [NotifikasiController::class, 'getNotif']);
 
 Route::get('/pengumuman', [SeleksiController::class, 'pengumuman']);
+
+Route::get('/seleksi/{user_id}', [SeleksiController::class, 'getSeleksi']);
+
+use App\Http\Controllers\Api\PendaftaranController;
+
+Route::post('/pendaftaran', [PendaftaranController::class, 'store']);

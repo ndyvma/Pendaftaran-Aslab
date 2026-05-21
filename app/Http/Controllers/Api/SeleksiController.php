@@ -47,4 +47,23 @@ class SeleksiController extends Controller
         ]);
     }
 
+    public function getSeleksi($user_id)
+    {
+
+        $seleksi = Seleksi::where('user_id', $user_id)->first();
+
+        if (!$seleksi) {
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Data seleksi tidak ditemukan'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $seleksi
+        ]);
+    }
+
 }

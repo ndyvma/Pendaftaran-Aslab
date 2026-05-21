@@ -12,7 +12,7 @@ class ProfilController extends Controller
     {
         $profil = Profil::create([
 
-            'user_id' => $request->user_id,
+            `'user_id' => $request->user_id,
             'nim' => $request->nim,
             'kelas' => $request->kelas,
             'jenis_kelamin' => $request->jenis_kelamin,
@@ -20,7 +20,7 @@ class ProfilController extends Controller
             'tanggal_lahir' => $request->tanggal_lahir,
             'alamat_lengkap' => $request->alamat_lengkap,
             'tahun_kelulusan' => $request->tahun_kelulusan,
-            'alasan_daftar' => $request->alasan_daftar
+            'alasan_daftar' => $request->alasan_daftar`
 
         ]);
 

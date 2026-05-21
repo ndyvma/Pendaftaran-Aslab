@@ -19,6 +19,8 @@ class Profil extends Model
         'tanggal_lahir',
         'alamat_lengkap',
         'tahun_kelulusan',
-        'alasan_daftar'
+        'alasan_daftar',
+        'no_wa',
+        'email',
     ];
 }
