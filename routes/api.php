@@ -3,12 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfilController;
-use App\Http\Controllers\Api\DokumenController;
 use App\Http\Controllers\Api\AdminAuthController;
 use App\Http\Controllers\Api\CbtController;
 use App\Http\Controllers\Api\SeleksiController;
 use App\Http\Controllers\Api\WawancaraController;
 use App\Http\Controllers\Api\NotifikasiController;
+use App\Http\Controllers\Api\PendaftaranController;
 
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -20,8 +20,6 @@ Route::post('/profil', [ProfilController::class, 'store']);
 Route::get('/profil/{id}', [ProfilController::class, 'show']);
 
 Route::put('/profil/{id}', [ProfilController::class, 'update']);
-
-Route::post('/dokumen', [DokumenController::class, 'store']);
 
 Route::post('/admin/register', [AdminAuthController::class, 'register']);
 Route::post('/admin/login', [AdminAuthController::class, 'login']);
@@ -41,6 +39,6 @@ Route::get('/pengumuman', [SeleksiController::class, 'pengumuman']);
 
 Route::get('/seleksi/{user_id}', [SeleksiController::class, 'getSeleksi']);
 
-use App\Http\Controllers\Api\PendaftaranController;
-
 Route::post('/pendaftaran', [PendaftaranController::class, 'store']);
+
+Route::get('/pendaftaran', [PendaftaranController::class, 'index']);

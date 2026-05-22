@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Seleksi;
 class Profil extends Model
 {
     public function user()
@@ -12,6 +12,7 @@ class Profil extends Model
     }
     protected $fillable = [
         'user_id',
+        'nama_lengkap',
         'nim',
         'kelas',
         'jenis_kelamin',
@@ -23,4 +24,12 @@ class Profil extends Model
         'no_wa',
         'email',
     ];
+    public function dokumen()
+    {
+        return $this->hasOne(Dokumen::class, 'user_id', 'user_id');
+    }
+    public function seleksi()
+    {
+        return $this->hasOne(Seleksi::class, 'user_id', 'user_id');
+    }
 }
