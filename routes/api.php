@@ -42,3 +42,10 @@ Route::get('/seleksi/{user_id}', [SeleksiController::class, 'getSeleksi']);
 Route::post('/pendaftaran', [PendaftaranController::class, 'store']);
 
 Route::get('/pendaftaran', [PendaftaranController::class, 'index']);
+use App\Http\Controllers\Api\CbtSessionController;
+
+Route::get('/kartu-ujian/{user_id}', [CbtSessionController::class, 'kartuUjian']);
+Route::post('/cbt-session', [CbtSessionController::class, 'store']);
+
+Route::post('/assign-cbt/{user_id}', [SeleksiController::class, 'assignCbt']);
+

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SoalCbt;
 use App\Models\Seleksi;
+// use Carbon\Carbon;
 
 class CbtController extends Controller
 {
@@ -14,7 +15,7 @@ class CbtController extends Controller
     {
 
         $soal = SoalCbt::create([
-
+            'cbt_session_id' => $request->cbt_session_id,
             'pertanyaan' => $request->pertanyaan,
             'opsi_a' => $request->opsi_a,
             'opsi_b' => $request->opsi_b,
@@ -22,7 +23,6 @@ class CbtController extends Controller
             'opsi_d' => $request->opsi_d,
             'jawaban_benar' => $request->jawaban_benar,
             'admin_id' => $request->admin_id
-
         ]);
 
         return response()->json([
@@ -31,10 +31,10 @@ class CbtController extends Controller
             'data' => $soal
         ]);
     }
-    public function getSoal($user_id)
+    public function getSoal(Request $request, $user_id)
     {
 
-        $seleksi = Seleksi::where('user_id', $user_id)->first();
+        $seleksi = Seleksi::with('cbtSession')->where('user_id', $user_id)->first();
 
         if (!$seleksi || $seleksi->status_seleksi != 'CBT') {
 
@@ -44,13 +44,14 @@ class CbtController extends Controller
             ], 403);
         }
 
-        $soal = SoalCbt::all();
+        $soal = SoalCbt::where('cbt_session_id', $seleksi->cbt_session_id)->get();
+        $soal->makeHidden(['jawaban_benar']);
 
         return response()->json([
             'success' => true,
             'status_user' => $seleksi->status_seleksi,
+            'durasi_menit' => $seleksi->cbtSession->durasi,
             'data' => $soal
         ]);
     }
-
 }

@@ -16,6 +16,7 @@ class SoalCbt extends Model
         return $this->hasMany(JawabanCbt::class);
     }
     protected $fillable = [
+        'cbt_session_id',
         'pertanyaan',
         'opsi_a',
         'opsi_b',
@@ -24,4 +25,9 @@ class SoalCbt extends Model
         'jawaban_benar',
         'admin_id'
     ];
+
+    public function cbtSession()
+    {
+        return $this->belongsTo(CbtSession::class);
+    }
 }
